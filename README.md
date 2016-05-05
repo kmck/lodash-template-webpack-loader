@@ -1,5 +1,7 @@
 # webpack-template-loader
 
+[![Build Status](https://travis-ci.org/kmck/lodash-template-loader.svg?branch=master)](https://travis-ci.org/kmck/lodash-template-loader)
+
 [Webpack](https://webpack.github.io/) loader for [Lodash templates](https://lodash.com/docs#template)
 
 Supports the features you probably expect, such as escaping and template imports, but without the kitchen sink. Unless you want the kitchen sink!
