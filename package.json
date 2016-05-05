@@ -1,6 +1,6 @@
 {
   "name": "lodash-template-webpack-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Webpack loader for Lodash templates",
   "main": "index.js",
   "scripts": {
@@ -49,6 +49,7 @@
     "mocha": "^2.2.5",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.2",
+    "source-map": "^0.5.6",
     "underscore": "^1.8.3",
     "webpack-stream": "^3.2.0"
   },

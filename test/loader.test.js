@@ -28,6 +28,16 @@ describe('lodash-template-webpack-loader', function() {
         assert.equal(template({test: 'She & Him'}), loadFile('test/output/escaped.txt'));
     });
 
+    it('loads with noCache enabled', function() {
+        var template = require('!!../?noCache!./templates/static.html');
+        assert.equal(template(), loadFile('test/output/static.txt'));
+    });
+
+    it('loads with sourceMaps enabled', function() {
+        var template = require('!!../?sourceMap!./templates/static.html');
+        assert.equal(template(), loadFile('test/output/static.txt'));
+    });
+
     describe('options', function() {
         describe('globalLodash', function() {
             beforeEach(function() {

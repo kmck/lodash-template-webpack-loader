@@ -22,9 +22,6 @@ module.exports = {
     lodashTemplateLoader: function() {
         return {
             defaults: {},
-            noCache: {
-                noCache: true,
-            },
             enableGlobalLodash: {
                 globalLodash: true,
             },

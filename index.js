@@ -4,6 +4,7 @@ var _ = require('lodash');
 
 var path = require('path');
 var utils = require('loader-utils');
+var SourceMapGenerator = require('source-map').SourceMapGenerator;
 var attributeParser = require('./lib/attribute-parser');
 
 function resolveFlags() {
@@ -17,13 +18,17 @@ function resolveFlags() {
     }
 }
 
+function resolveModule(modulePath) {
+    return require.resolve(modulePath);
+}
+
 function templateSettingsToRegex(obj, keys) {
     return _.mapValues(_.pick(obj, keys), function(value) {
         return new RegExp(value, 'g');
     });
 }
 
-function lodashTemplateLoader(content) {
+function lodashTemplateLoader(content, map) {
     // Query parameters
     var params = utils.parseQuery(this.query);
 
@@ -44,8 +49,23 @@ function lodashTemplateLoader(content) {
         options = options.defaults;
     }
 
+    // Caching
     if (this.cacheable && !options.noCache) {
         this.cacheable();
+    }
+
+    // Source map
+    if (!map && (this.sourceMap || params.sourceMap || options.sourceMap)) {
+        var sourceMapGenerator = new SourceMapGenerator({
+            file: this.resourcePath,
+        });
+        sourceMapGenerator.setSourceContent(this.resourcePath, content);
+        sourceMapGenerator.addMapping({
+            source: this.resourcePath,
+            original: {line: 1, column: 0},
+            generated: {line: 1, column: 0},
+        });
+        map = sourceMapGenerator.toString();
     }
 
     // Template engine
@@ -103,7 +123,7 @@ function lodashTemplateLoader(content) {
 
     var parseDynamicRoutes = resolveFlags(params.parseDynamicRoutes, options.parseDynamicRoutes, false);
     var attributesContext = attributeParser(content, function(tag, attr) {
-        return attributes.indexOf(tag + ':' + attr) != -1;
+        return attributes.indexOf(tag + ':' + attr) !== -1;
     }, 'ATTRIBUTE', params.root || options.root, parseDynamicRoutes);
     content = attributesContext.replaceMatches(content);
 
@@ -131,8 +151,7 @@ function lodashTemplateLoader(content) {
 
     // If we don't have `_` and want to escape text, define `_.escape`
     if (!hasLodash && templateEscape) {
-        this.addDependency('lodash/escape');
-        sourcePieces.push('var _ = {escape:require(\'lodash/escape\')};');
+        sourcePieces.push('var _ = {escape:require(\'' + resolveModule('lodash/escape') + '\')};');
     }
 
     // Template imports
@@ -148,8 +167,8 @@ function lodashTemplateLoader(content) {
             this.addDependency('lodash/values');
             sourcePieces.push(
                 'var _imports = ' + imports + ';',
-                'var _keys = require(\'lodash/keys\');',
-                'var _values = require(\'lodash/values\');'
+                'var _keys = require(\'' + resolveModule('lodash/keys') + '\');',
+                'var _values = require(\'' + resolveModule('lodash/values') + '\');'
             );
         }
         sourcePieces.push('module.exports = Function(_keys(_imports), \'return \' + ' + templateSource + '.toString()).apply(undefined, _values(_imports));');
@@ -157,7 +176,7 @@ function lodashTemplateLoader(content) {
         sourcePieces.push('module.exports = ' + templateSource + ';');
     }
 
-    return sourcePieces.join('\n');
-};
+    this.callback(null, sourcePieces.join('\n'), map);
+}
 
 module.exports = lodashTemplateLoader;
