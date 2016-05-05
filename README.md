@@ -1,4 +1,4 @@
-# webpack-template-loader
+# lodash-template-loader
 
 [![Build Status](https://travis-ci.org/kmck/lodash-template-loader.svg?branch=master)](https://travis-ci.org/kmck/lodash-template-loader)
 
