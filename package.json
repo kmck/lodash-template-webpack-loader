@@ -1,0 +1,60 @@
+{
+  "name": "lodash-template-loader",
+  "version": "1.0.0",
+  "description": "Webpack loader for Lodash templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp",
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha"
+  },
+  "homepage": "https://github.com/kmck/lodash-template-loader",
+  "bugs": {
+    "url": "https://github.com/kmck/lodash-template-loader/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Keith McKnight",
+    "email": "keith@mcknig.ht"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kmck/lodash-template-loader.git"
+  },
+  "keywords": [
+    "underscore",
+    "lodash",
+    "template",
+    "webpack",
+    "loader"
+  ],
+  "files": [
+    "/index.js",
+    "/lib",
+    "/LICENSE"
+  ],
+  "dependencies": {
+    "fastparse": "^1.1.1",
+    "loader-utils": "^0.2.11",
+    "lodash": "^4.11.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-string": "^1.1.2",
+    "file-loader": "^0.8.5",
+    "fs-extra": "^0.30.0",
+    "gulp": "^3.9.1",
+    "gulp-istanbul": "^0.10.4",
+    "gulp-mocha": "^2.2.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.2.5",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.2",
+    "underscore": "^1.8.3",
+    "webpack-stream": "^3.2.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    }
+  }
+}

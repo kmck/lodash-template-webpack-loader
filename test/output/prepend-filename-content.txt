@@ -1,0 +1,2 @@
+<!-- templates/prepend-filename-content.html -->
+<h1>Here comes a special boy</h1>
