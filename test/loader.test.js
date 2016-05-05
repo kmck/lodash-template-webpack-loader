@@ -6,7 +6,7 @@ function loadFile(fileToLoad) {
     return fs.readFileSync(fileToLoad).toString();
 }
 
-describe('lodash-template-loader', function() {
+describe('lodash-template-webpack-loader', function() {
 
     afterEach(function() {
         delete require.cache[require.resolve('lodash')];

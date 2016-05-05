@@ -1,6 +1,6 @@
-# lodash-template-loader
+# lodash-template-webpack-loader
 
-[![Build Status](https://travis-ci.org/kmck/lodash-template-loader.svg?branch=master)](https://travis-ci.org/kmck/lodash-template-loader)
+[![Build Status](https://travis-ci.org/kmck/lodash-template-webpack-loader.svg?branch=master)](https://travis-ci.org/kmck/lodash-template-webpack-loader)
 
 [Webpack](https://webpack.github.io/) loader for [Lodash templates](https://lodash.com/docs#template)
 
@@ -8,7 +8,7 @@ Supports the features you probably expect, such as escaping and template imports
 
 ### Installation
 
-    npm install --save-dev lodash-template-loader
+    npm install --save-dev lodash-template-webpack-loader
 
 ### Usage
 
@@ -20,7 +20,7 @@ module.exports = {
     module: {
         loaders: [{
             test: /(\..tpl|\.html)$/,
-            loader: 'lodash-template',
+            loader: 'lodash-template-webpack',
         }],
     },
     lodashTemplateLoader: {
@@ -188,7 +188,7 @@ module.exports = {
     module: {
         loaders: [{
             test: /(\..tpl|\.html)$/,
-            loader: 'lodash-template',
+            loader: 'lodash-template-webpack',
         }, {
             test: /(\.gif|\.png|\.jpg)$/,
             loader: 'url-loader', // or 'file-loader'
