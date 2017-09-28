@@ -23,10 +23,16 @@ module.exports = {
             loader: 'lodash-template-webpack',
         }],
     },
-    lodashTemplateLoader: {
-        // optional configuration...
-    },
-    //...
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                lodashTemplateLoader: {
+                    // optional configuration...
+                },
+                //...
+            }
+        })
+    ]
 };
 ```
 
@@ -100,9 +106,16 @@ You can specify a string of **raw javascript** for the `imports` option to use i
 ```js
 module.exports = {
     // ...
-    lodashTemplateLoader: {
-        imports: '{title: \'Hi, world!\'}',
-    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                lodashTemplateLoader: {
+                    imports: '{title: \'Hi, world!\'}',
+                },
+                //...
+            }
+        })
+    ]
     // ...
 };
 ```
@@ -112,9 +125,16 @@ In some cases, it may be preferable to specify a module to use for the imports. 
 ```js
 module.exports = {
     // ...
-    lodashTemplateLoader: {
-        importsModule: path.join(__dirname, 'template-imports'),
-    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                lodashTemplateLoader: {
+                    importsModule: path.join(__dirname, 'template-imports'),
+                },
+                //...
+            }
+        })
+    ]
     // ...
 };
 ```
@@ -126,11 +146,18 @@ You can modify the regular expressions that Lodash uses for [`interpolate`](http
 ```js
 module.exports = {
     // ...
-    lodashTemplateLoader: {
-        interpolate: '\\{\\[(.+?)\\]\\}',
-        escape: '\\{\\{(.+?)\\}\\}',
-        evaluate: '\\{%([\\s\\S]+?)%\\}',
-    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                lodashTemplateLoader: {
+                    interpolate: '\\{\\[(.+?)\\]\\}',
+                    escape: '\\{\\{(.+?)\\}\\}',
+                    evaluate: '\\{%([\\s\\S]+?)%\\}',
+                },
+                //...
+            }
+        })
+    ]
     // ...
 };
 ```
@@ -140,9 +167,16 @@ You can also specify the [`variable`](https://lodash.com/docs#templateSettings-v
 ```js
 module.exports = {
     // ...
-    lodashTemplateLoader: {
-        variable: 'data',
-    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                lodashTemplateLoader: {
+                    variable: 'data',
+                },
+                //...
+            }
+        })
+    ]
     // ...
 };
 ```
@@ -171,9 +205,16 @@ When debugging a large single page app with the DevTools, it can be hard to find
 ```js
 module.exports = {
     // ...
-    lodashTemplateLoader: {
-        prependFilenameComment: __dirname,
-    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                lodashTemplateLoader: {
+                    prependFilenameComment: __dirname,
+                },
+                //...
+            }
+        })
+    ]
     // ...
 };
 ```
@@ -194,9 +235,16 @@ module.exports = {
             loader: 'url-loader', // or 'file-loader'
         }],
     },
-    lodashTemplateLoader: {
-        attributes: ['img:src', 'link:href'],
-    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                lodashTemplateLoader: {
+                    attributes: ['img:src', 'link:href'],
+                },
+                //...
+            }
+        })
+    ]
     // ...
 };
 ```
@@ -206,9 +254,16 @@ You can specify a `root` to translate absolute paths to a relative location:
 ```js
 module.exports = {
     // ...
-    lodashTemplateLoader: {
-        root: 'assets',
-    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                lodashTemplateLoader: {
+                    root: 'assets',
+                },
+                //...
+            }
+        })
+    ]
     // ...
 };
 ```
@@ -226,10 +281,17 @@ You can specify `root` with `parseDynamicRoutes: true` to prepend a root to abso
 ```js
 module.exports = {
     // ...
-    lodashTemplateLoader: {
-        root: '/assets/img',
-        parseDynamicRoutes: true,
-    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                lodashTemplateLoader: {
+                    root: '/assets/img',
+                    parseDynamicRoutes: true,
+                },
+                //...
+            }
+        })
+    ]
     // ...
 };
 ```
@@ -247,9 +309,16 @@ If you'd like to disable attribute parsing behavior entirely, simply disable `at
 ```js
 module.exports = {
     // ...
-    lodashTemplateLoader: {
-        attributes: false,
-    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                lodashTemplateLoader: {
+                    attributes: false,
+                },
+                //...
+            }
+        })
+    ]
     // ...
 };
 ```
