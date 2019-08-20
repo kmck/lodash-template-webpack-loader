@@ -20,7 +20,7 @@ module.exports = {
     module: {
         loaders: [{
             test: /(\.tpl|\.html)$/,
-            loader: 'lodash-template-webpack',
+            loader: 'lodash-template-webpack-loader',
         }],
     },
     lodashTemplateLoader: {
@@ -188,7 +188,7 @@ module.exports = {
     module: {
         loaders: [{
             test: /(\.tpl|\.html)$/,
-            loader: 'lodash-template-webpack',
+            loader: 'lodash-template-webpack-loader',
         }, {
             test: /(\.gif|\.png|\.jpg)$/,
             loader: 'url-loader', // or 'file-loader'
